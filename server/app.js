@@ -18,8 +18,18 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+// Set up CORS with dynamic origin based on the request
 app.use(cors({
-    origin: "https://tasksbasket.netlify.app", // Remove the trailing slash
+    origin: (origin, callback) => {
+        // Check if the request origin is allowed
+        const allowedOrigins = ['https://tasksbasket.netlify.app'];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true // Allow sending cookies in requests
 }));
 
