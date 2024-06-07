@@ -19,7 +19,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://66634d2eaa32010f5a31d4f8--candid-pika-dad7c4.netlify.app", // Remove the trailing slash
+    origin: "https://66635b4997150521601bdc67--tasksbasket.netlify.app/", // Remove the trailing slash
     credentials: true // Allow sending cookies in requests
 }));
 
