@@ -7,8 +7,8 @@ const route = express.Router();
 
 route.post("/newTask", isUser ,newTaskController)
 route.get("/getAllTask", isUser ,getAllTask);
-route.delete("/taskDelete/:id", deleteTask);
-route.patch("/taskUpdate/:id", updateTask);
+route.delete("/taskDelete/:id" ,isUser, deleteTask);
+route.patch("/taskUpdate/:id" , isUser, updateTask);
 
 
 

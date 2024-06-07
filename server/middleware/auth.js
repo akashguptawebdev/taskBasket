@@ -5,7 +5,6 @@ export const isUser = async (req, res, next) => {
     try {
         // Authentication
         const token = await req.cookies.loginToken; // Assuming the token is stored in the 'token' cookie
-        
         if (!token) {
             return res.status(401).json({ message: "User not authenticated" });
         }

@@ -12,12 +12,16 @@ config()
 
 
 let app = express();
+
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:7543', // Replace with your frontend origin
+    credentials: true // Allow sending cookies in requests
+  }))
+
 app.use("/api/user",userRoutes)
 app.use("/api/task",TaskRoutes)
-
 
 
 dbConn();

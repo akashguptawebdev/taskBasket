@@ -32,31 +32,56 @@ export const userRegistration = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (!email || !password) {
-      res.send(200).json("Fill all form");
+      return res.status(400).json({
+        success: false,
+        message: "Please provide all details!",
+      });
     }
+
     let user = await userModel.findOne({ email });
+
     if (!user) {
-      return res.status(200).json("Invalid Email or Password !");
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email or password!",
+      });
     }
 
     const isPasswordMatched = await user.comparePassword(password);
-    if(!isPasswordMatched){
-      return res.status(400).json("Invalid Email or Password !");
-
+    if (!isPasswordMatched) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email or password!",
+      });
     }
 
-    generateToken(user , "user Login Successfully !" , 200 , res);
-  } catch (err) {}
+    generateToken(user, "user Login Successfully !", 200, res);
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Server error. Please try again later.",
+    });
+  }
 };
 
+export const logout = async (req, res, next) => {
+  res
+    .status(200)
+    .cookie("loginToken", "", {
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    })
+    .json({
+      success: true,
+      message: "user Log Out Successfully !",
+    });
+};
 
-export const getUserDetails = async(req , res , next)=>{
+export const getUserDetails = async (req, res, next) => {
   const user = req.user;
-  console.log(req.user)
   res.status(200).json({
     succes: true,
     user,
   });
-}
+};

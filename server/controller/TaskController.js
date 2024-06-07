@@ -3,7 +3,7 @@ export const newTaskController = async (req, res) => {
   const { title, description } = req.body;
   const { user } = req;
 
-  if ((!title, !description)) {
+  if ((!title)) {
     return res.status(400).json({
       success: false,
       message: "Please Fill All Field",
@@ -44,7 +44,7 @@ export const deleteTask = async (req, res) => {
 
     const deleteTask = await TaskModel.findByIdAndDelete({ _id: id });
 
-    res.status(400).json({
+    res.status(200).json({
       success: true,
       message: "Task Deleted Successfully",
     });
