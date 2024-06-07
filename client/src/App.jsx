@@ -11,6 +11,7 @@ import axios from "axios";
 import Register from "./pages/Register/Registration.jsx"
 import MainPage from "./pages/Main page/MainPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import LandingPage from "./pages/Landing Page/LandingPage.jsx";
 
 
 const App = () => {
@@ -48,10 +49,12 @@ const App = () => {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/mainPage" element={<MainPage />} />
+          <Route path="/LandingPage" element={<LandingPage />} />
+
         </Routes>
         <Footer/>
           

@@ -33,13 +33,14 @@ const NavBar = () => {
   return (
     <nav className=" flex justify-between px-5  md:px-20 h-20 items-center  bg-slate-400">
       <div className="logo flex items-center">
-        <Link to={"/"}>
+        <Link to={isAuthenticated?"/mainPage":"/LandingPage"}>
         <img src={mainPic.TaskBasket} alt="logo" className="logo-img w-14 h-14 rounded-full"></img>
         </Link>
       </div>
 
       <div className="sm:block hidden">
         <div className="nav-links flex justify-center items-center gap-5">
+
           <Link to={"/"}>Home</Link>
           <Link to={"/Features"}>Features</Link>
           <Link to={"/about"}>ABOUT US</Link>

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Features.css";
 import { mainPic } from "../../../../assets/assetsprovider";
+import { Link } from "react-router-dom";
 const Features = () => {
   return (
     <>
@@ -47,7 +48,9 @@ const Features = () => {
             </div>
 
             <div className="btn flex justify-center">
+              <Link to="/mainPage">
                 <button className="mt-10 bg-orange-700 py-4 px-14 rounded-full font-bold ">Add Task</button>
+              </Link>
             </div>
 
           </div>
