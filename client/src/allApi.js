@@ -1,1 +1,1 @@
-export const baseApiUrl = "http://localhost:3500/";
+export const baseApiUrl = "https://taskbasket.onrender.com/";

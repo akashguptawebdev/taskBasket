@@ -16,7 +16,7 @@ let app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:7543', // Replace with your frontend origin
+    origin: "https://66634d2eaa32010f5a31d4f8--candid-pika-dad7c4.netlify.app/", // Replace with your frontend origin
     credentials: true // Allow sending cookies in requests
   }))
 
