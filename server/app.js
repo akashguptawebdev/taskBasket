@@ -20,6 +20,14 @@ app.use(cors({
     credentials: true // Allow sending cookies in requests
   }))
 
+  app.use(express.static(path.join(__dirname, 'public'), {
+    setHeaders: (res, path) => {
+      if (path.endsWith('.js')) {
+        res.setHeader('Content-Type', 'application/javascript');
+      }
+    }
+  }));
+
 app.use("/api/user",userRoutes)
 app.use("/api/task",TaskRoutes)
 
