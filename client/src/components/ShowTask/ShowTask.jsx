@@ -18,7 +18,7 @@ const ShowTask = () => {
   const fetchTask = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3500/api/task/getAllTask",
+        baseApiUrl+"/api/task/getAllTask",
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
