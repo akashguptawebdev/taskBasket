@@ -12,6 +12,8 @@ export const generateToken = (user, message, statusCode, res) => {
     .cookie(cookieName, token, {
       httpOnly: true,
       expires: new Date(Date.now() + COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      sameSite: 'None', // Set SameSite attribute to None
+      secure: true, // Set Secure attribute to true
     })
     .json({
       success: true,
