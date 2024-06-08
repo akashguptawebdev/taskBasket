@@ -1,15 +1,14 @@
-import jwt from "jsonwebtoken"
-import { userModel } from "../models/userModel.js"
+import jwt from "jsonwebtoken";
+import { userModel } from "../models/userModel.js";
 
 export const isUser = async (req, res, next) => {
     try {
-        // Authentication
-        const token = await req.cookies.loginToken; // Assuming the token is stored in the 'token' cookie
+        const token = req.cookies.loginToken; // Assuming the token is stored in the 'loginToken' cookie
         if (!token) {
             return res.status(401).json({ message: "User not authenticated" });
         }
 
-        const JWT_SECRET_KEY = "kljsakhkjhcasl";
+        const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "kljsakhkjhcasl";
         
         // Authorization
         const decoded = jwt.verify(token, JWT_SECRET_KEY);
@@ -22,7 +21,7 @@ export const isUser = async (req, res, next) => {
 
         next();
     } catch (error) {
-        console.error("auth" ,error.message);
-        return res.status(200).json({ message: "Invalid token or user not authenticated" });
+        console.error("auth", error.message);
+        return res.status(401).json({ message: "Invalid token or user not authenticated" });
     }
 };
