@@ -5,7 +5,7 @@ export const generateToken = (user, message, statusCode, res) => {
 
   const token = user.generateJsonWebToken();
   const cookieName = "loginToken";
-  const COOKIE_EXPIRE = 7; // 7 days
+  // const COOKIE_EXPIRE = 7; // 7 days
 
   res
       .status(statusCode)
@@ -13,7 +13,7 @@ export const generateToken = (user, message, statusCode, res) => {
           httpOnly: true,
           secure: true,
           sameSite: 'None', // Set SameSite attribute to None
-          expires: new Date(Date.now() + COOKIE_EXPIRE * 24 * 60 * 60 * 1000), // 7 days from now
+          expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000), // 7 days from now
       })
       .json({
           success: true,

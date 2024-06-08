@@ -8,10 +8,10 @@ export const isUser = async (req, res, next) => {
             return res.status(401).json({ message: "User not authenticated" });
         }
 
-        const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "kljsakhkjhcasl";
+        // const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "kljsakhkjhcasl";
         
         // Authorization
-        const decoded = jwt.verify(token, JWT_SECRET_KEY);
+        const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY);
        
         req.user = await userModel.findById(decoded.id);
     
