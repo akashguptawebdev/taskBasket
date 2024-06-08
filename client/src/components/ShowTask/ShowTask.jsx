@@ -17,7 +17,7 @@ const ShowTask = () => {
 
   const fetchTask = async () => {
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         baseApiUrl+"api/task/getAllTask",
         {
           withCredentials:true,
