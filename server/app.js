@@ -12,11 +12,12 @@ config()
 
 
 let app = express();
-
-app.use(cors({
-    origin:"*",
-    methods:["GET" , "POST", "DELETE", "PATCH"]
-}))
+const corsOptions = {
+    origin: 'https://tasksbasket.netlify.app',
+    credentials: true, // This allows the server to accept credentials (cookies, authorization headers, etc.) from the client.
+  };
+  
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
