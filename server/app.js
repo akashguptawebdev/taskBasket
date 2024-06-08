@@ -7,7 +7,9 @@ import cookieParser from 'cookie-parser';
 import userRoutes from "./route/userRoute.js";
 import TaskRoutes from "./route/TaskRoute.js";
 
-config();
+config({
+    path:"./config/.env"
+});
 
 const app = express();
 const corsOptions = {
