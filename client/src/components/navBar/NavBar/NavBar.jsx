@@ -15,7 +15,8 @@ const NavBar = () => {
   const handleLogout =async()=>{
     try {
       const response = await axios.get(baseApiUrl+"api/user/logout",{
-        withCredentials:true
+        withCredentials:true,
+        headers: { "Content-Type": "application/json" }
       });
       toast.success(response?.data?.message);
       setIsAuthenticated(false);
