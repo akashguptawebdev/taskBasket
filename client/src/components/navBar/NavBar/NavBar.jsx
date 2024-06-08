@@ -14,7 +14,7 @@ const NavBar = () => {
 
   const handleLogout =async()=>{
     try {
-      const response = await axios.get(baseApiUrl+"api/user/logout",{
+      const response = await axios.post(baseApiUrl+"api/user/logout",{
         withCredentials:true,
         headers: { "Content-Type": "application/json" }
       });
