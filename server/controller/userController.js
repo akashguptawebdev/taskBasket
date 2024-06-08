@@ -65,6 +65,7 @@ export const login = async (req, res) => {
   }
 };
 
+// Logout function
 export const logout = async (req, res, next) => {
   res
     .status(200)
@@ -73,11 +74,11 @@ export const logout = async (req, res, next) => {
       secure: true,
       sameSite: "None",
       path: "/",
-      expires: new Date(Date.now()),
+      expires: new Date(Date.now()), // This expires the cookie immediately
     })
     .json({
       success: true,
-      message: "user Log Out Successfully !",
+      message: "User logged out successfully!",
     });
 };
 
