@@ -12,25 +12,26 @@ const NavBar = () => {
   const navigateTo = useNavigate();
   const [show, setShow] = useState(true);
 
-  const handleLogout =async()=>{
+  const handleLogout = async () => {
     try {
-      const response = await axios.get(baseApiUrl+"api/user/logout",{
-        withCredentials:true,
-        headers: { "Content-Type": "application/json" }
-      });
+        const response = await axios.get(baseApiUrl + "api/user/logout", {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
-      toast.success(response?.data?.message);
-      setIsAuthenticated(false);
+        toast.success(response?.data?.message);
+        setIsAuthenticated(false);
     } catch (error) {
-      if (error.response && error.response.data) {
-        toast.error(error.response?.data.message);
-
-      } else {
-    
-        toast.error("An unexpected error occurred.");
-      }
+        if (error.response && error.response.data) {
+            toast.error(error.response?.data.message);
+        } else {
+            toast.error("An unexpected error occurred.");
+        }
     }
-  }
+};
+
 
   return (
     <nav className=" flex justify-between px-5  md:px-20 h-20 items-center  bg-slate-400">
