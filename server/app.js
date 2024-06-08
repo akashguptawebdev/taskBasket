@@ -13,9 +13,12 @@ config()
 
 let app = express();
 
+app.use(cors({
+    origin:"*",
+    methods:["GET" , "POST", "DELETE", "PATCH"]
+}))
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors())
 
 app.use("/api/user",userRoutes)
 app.use("/api/task",TaskRoutes)
