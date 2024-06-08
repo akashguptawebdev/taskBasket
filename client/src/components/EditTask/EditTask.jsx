@@ -66,10 +66,10 @@ const EditTask = ({ task, onEditComplete }) => {
       <div className="border rounded-md border-t-0 text-end px-5 py-2">
         <button
           className={`${
-            !title || !description ? "bg-red-500" : "bg-green-800"
+            !title  ? "bg-red-500" : "bg-green-800"
           } text-white py-1 px-8 rounded-full font-bold`}
           onClick={handleEditTask}
-          disabled={!title || !description}
+          disabled={!title}
         >
           Edit Task
         </button>

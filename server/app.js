@@ -16,7 +16,7 @@ const corsOptions = {
   origin: 'https://tasksbasket.netlify.app',
   credentials: true, // This allows the server to accept credentials (cookies, authorization headers, etc.) from the client.
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed methods
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Specify allowed methods
 };
 
 app.use(cors(corsOptions));

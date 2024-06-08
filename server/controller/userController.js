@@ -68,19 +68,17 @@ export const login = async (req, res) => {
 
 // Logout function
 export const logout = async (req, res, next) => {
-    res
-        .status(200)
-        .cookie("loginToken", "", {
-            httpOnly: true,
-            secure: true,
-            sameSite: "None",
-            path: "/",
-            expires: new Date(0), // Set the cookie to expire immediately
-        })
-        .json({
-            success: true,
-            message: "User logged out successfully!",
-        });
+  res.clearCookie("loginToken", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+  });
+
+  res.status(200).json({
+      success: true,
+      message: "User logged out successfully!",
+  });
 };
 
 export const getUserDetails = async (req, res, next) => {

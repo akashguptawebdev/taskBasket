@@ -6,7 +6,7 @@ const route = express.Router();
 route.post("/registration",userRegistration)
 route.post("/login", login);
 route.get("/details" ,isUser , getUserDetails);
-route.post("/logout" , isUser , logout)
+route.get("/logout" , isUser , logout)
 
 
 
