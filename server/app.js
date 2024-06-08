@@ -11,13 +11,27 @@ config();
 
 const app = express();
 const corsOptions = {
-    origin: 'https://tasksbasket.netlify.app',
-    credentials: true, // This allows the server to accept credentials (cookies, authorization headers, etc.) from the client.
+  origin: 'https://tasksbasket.netlify.app',
+  credentials: true, // This allows the server to accept credentials (cookies, authorization headers, etc.) from the client.
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed methods
 };
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://tasksbasket.netlify.app');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 
 app.use("/api/user", userRoutes);
 app.use("/api/task", TaskRoutes);
