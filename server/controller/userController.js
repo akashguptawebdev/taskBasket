@@ -70,6 +70,9 @@ export const logout = async (req, res, next) => {
     .status(200)
     .cookie("loginToken", "", {
       httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
       expires: new Date(Date.now()),
     })
     .json({

@@ -17,10 +17,10 @@ const ShowTask = () => {
 
   const fetchTask = async () => {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         baseApiUrl+"api/task/getAllTask",
         {
-          withCredentials: true,
+          withCredentials:'include',
           headers: { "Content-Type": "application/json" },
         }
       );
