@@ -71,7 +71,7 @@ const App = () => {
     );
   }
 
-  console.log(isAuthenticated)
+
 
   return (
     <>
@@ -86,7 +86,7 @@ const App = () => {
 
           {/* Redirect based on authentication status once check is complete */}
           <Route
-            path="*" element={isAuthenticated ? <MainPage /> : <Navigate to="/" />}
+            path="*" element={ <MainPage />}
           />
         </Routes>
         <Footer />
