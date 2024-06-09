@@ -13,7 +13,7 @@ config({
 
 const app = express();
 const corsOptions = {
-  origin: 'https://tasksbasket.netlify.app',
+  origin: 'https://task-basket.vercel.app',
   credentials: true, // This allows the server to accept credentials (cookies, authorization headers, etc.) from the client.
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Specify allowed methods
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://tasksbasket.netlify.app');
+  res.header('Access-Control-Allow-Origin', 'https://task-basket.vercel.app');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization');
