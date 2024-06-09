@@ -74,7 +74,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/mainPage" element={<MainPage />} />
           <Route path="/LandingPage" element={<LandingPage />} />
-          <Route path="*" element={<LandingPage/>} />
+          <Route path="*" element={`${isAuthenticated?<MainPage/>:<LandingPage/>}`} />
         </Routes>
         <Footer/>
           
