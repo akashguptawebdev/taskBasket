@@ -12,12 +12,14 @@ import Register from "./pages/Register/Registration.jsx"
 import MainPage from "./pages/Main page/MainPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/Landing Page/LandingPage.jsx";
-import {messaging} from "./FireBase.jsx"
+import {messaging} from "./FireBase.js"
 import {getToken} from "firebase/messaging"
 
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(context);
+
+
 
   const requestPermission = async()=>{
     const permission = await Notification.requestPermission()
@@ -62,7 +64,6 @@ const App = () => {
   
 
 
-
   return (
     <>
       <Router>
@@ -73,7 +74,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/mainPage" element={<MainPage />} />
           <Route path="/LandingPage" element={<LandingPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<LandingPage/>} />
         </Routes>
         <Footer/>
           
