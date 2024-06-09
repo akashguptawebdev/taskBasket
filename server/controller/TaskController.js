@@ -60,7 +60,7 @@ export const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, description } = req.body;
-    if ((!title, !description)) {
+    if ((!title)) {
       return res.status(400).json({
         success: false,
         message: "Please Fill All Field",

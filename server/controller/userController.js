@@ -40,7 +40,7 @@ export const login = async (req, res) => {
             });
         }
 
-        let user = await userModel.findOne({ email });
+        let user = await userModel.findOne({ email }).select("+password");
 
         if (!user) {
             return res.status(400).json({

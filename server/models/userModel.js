@@ -1,18 +1,22 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import validator from "validator";
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     fullname:{
         type:String,
         required:true,
     },
     email:{
         type:String,
+        validate:[validator.isEmail, "Please Provide a valid Email"],
         required:true,
     },
     password:{
         type:String,
+        minLength: [8  , "Password Must contain At Least 8 char"],
+        select:false,
         required:true,
     }
 })
