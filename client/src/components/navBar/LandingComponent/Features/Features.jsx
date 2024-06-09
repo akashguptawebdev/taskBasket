@@ -23,7 +23,7 @@ const Features = () => {
           <div className="benifits flex flex-col gap-5 justify-evenly mt-5">
             <div className="benifits-head ">
            <div className="flex items-center gap-3">
-           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzQE-cB500hWzT6lyEwUylMrqqd6nMkWsQng&s" alt="" className="w-8 h-8 rounded-full"/>
+           <img src={mainPic.clock} alt="" className="w-8 h-8 rounded-full"/>
               <h3>Better Time Management</h3>
            </div>
               <p className="ml-12">Manage your time effectively and get more done every day.</p>
@@ -32,7 +32,7 @@ const Features = () => {
 
             <div className="benifits-head ">
               <div className="flex items-center gap-3">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Eo_circle_green_white_checkmark.svg/2048px-Eo_circle_green_white_checkmark.svg.png" alt="" className="w-8 h-8" />
+              <img src={mainPic.greenCheckd} alt="" className="w-8 h-8" />
               <h3>Increased Productivity</h3>
               </div>
               <p  className="ml-12">Boost your productivity by tackling tasks in an organized manner.</p>
@@ -41,7 +41,7 @@ const Features = () => {
 
             <div className="benifits-head">
              <div className="flex items-center gap-3">
-             <img src="https://cdn-icons-png.freepik.com/512/9119/9119230.png" alt="" className="w-10 h-10" />
+             <img src={mainPic.target} alt="" className="w-10 h-10" />
               <h3>Achieve Goals</h3>
              </div>
              <p  className="ml-12">Lower stress levels by having a clear plan for the day.</p>

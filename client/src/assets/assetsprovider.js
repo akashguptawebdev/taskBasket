@@ -8,6 +8,8 @@ import greenCheckd from "./greenChecked.jpg"
 import twitter from "./twitter.jpg"
 import facebook from "./facebook.png"
 import google from "./google.png"
+import target from "./target.png";
+import clock from "./clock.png"
 export const mainPic ={
     BranLogo,
     TaskBasketLogo,
@@ -18,5 +20,7 @@ export const mainPic ={
     greenCheckd,
     twitter,
     facebook,
-    google
+    google,
+    target,
+    clock
 }
