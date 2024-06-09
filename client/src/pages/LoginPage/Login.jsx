@@ -30,7 +30,7 @@ const Login = () => {
       );
       toast.success(response?.data?.message);
       setIsAuthenticated(true);
-      navigateTo("/");
+      navigateTo("/mainPage");
 
       if (isAuthenticated) {
         navigateTo("/");

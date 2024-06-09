@@ -46,12 +46,13 @@ const App = () => {
         });
         setIsAuthenticated(true);
         setUser(response.data.user);
-        setIsCheckingAuth(false);
       } catch (error) {
         if (error.response && error.response.data) {
           setIsAuthenticated(false);
           setUser({});
         }
+      } finally {
+         setIsCheckingAuth(false); // Authentication check is done
       }
     };
 
@@ -72,7 +73,6 @@ const App = () => {
   }
 
 
-
   return (
     <>
       <Router>
@@ -86,7 +86,7 @@ const App = () => {
 
           {/* Redirect based on authentication status once check is complete */}
           <Route
-            path="*" element={ <MainPage />}
+            path="*" element={isAuthenticated ? <MainPage /> : <Navigate to="/" />}
           />
         </Routes>
         <Footer />
