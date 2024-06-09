@@ -2,15 +2,11 @@ import express from "express";
 import { dbConn } from "./database/db_connection.js";
 import { config } from 'dotenv';
 import cors from "cors";
-import  path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRoutes from "./route/userRoute.js";
 import TaskRoutes from "./route/TaskRoute.js";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 config({
     path:"./config/.env"
 });
@@ -37,12 +33,6 @@ app.use((req, res, next) => {
   } else {
     next();
   }
-});
-// Serve static files from the 'dist' directory
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.use("/api/user", userRoutes);
