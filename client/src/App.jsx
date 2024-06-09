@@ -12,10 +12,24 @@ import Register from "./pages/Register/Registration.jsx"
 import MainPage from "./pages/Main page/MainPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/Landing Page/LandingPage.jsx";
+import {messaging} from "./FireBase.jsx"
+import {getToken} from "firebase/messaging"
 
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(context);
+
+  const requestPermission = async()=>{
+    const permission = await Notification.requestPermission()
+
+    if(permission === 'granted'){
+      // Generate Token
+    const token = await getToken(messaging , {vapidKey:'BJG_q_-rmY_2VsTuu73y-tF5N-9P1Rl0BADG1ney8HMrmHBUDc47wbOk47gjv6aoBOJpfn0H13KbR0m19ptAdHo'})
+    console.log(token)
+    }else if(permission === 'denied'){
+      alert("You denied for the notification")
+    }
+  }
   
   useEffect(() => {
     
@@ -37,6 +51,11 @@ const App = () => {
       
       }
     };
+
+    // Req user for notification permission
+    requestPermission();
+
+   
 
     fetchUser();
   }, [isAuthenticated]);
