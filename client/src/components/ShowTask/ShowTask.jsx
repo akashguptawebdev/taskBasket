@@ -5,6 +5,7 @@ import { baseApiUrl } from "../../allApi";
 import { toast } from "react-toastify";
 import AddTask from "../AddTask/AddTask";
 import EditTask from "../EditTask/EditTask.jsx";
+import { mainPic } from "../../assets/assetsprovider.js";
 
 const ShowTask = () => {
   const [taskData, setTaskData] = useState([]);
@@ -95,7 +96,7 @@ const ShowTask = () => {
                 >
                   {hoveredIndex === index && (
                     <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAIClLAy_95k0lnsJPztgXtUckJaWDDAAA6A&s"
+                      src={mainPic.greenCheckd}
                       className="rounded-full object-cover"
                       alt="delete.png"
                     />
