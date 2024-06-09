@@ -16,11 +16,14 @@ const UserDetails = ({ handleLogout }) => {
       onMouseLeave={() => setMenuVisible(false)}
     >
       <div className="flex items-center gap-2">
+        <Link to={"/mainPage"}>
         <img
           src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
           alt=""
           className="w-10 h-10 rounded-full userImg cursor-pointer"
         />
+        </Link>
+       
         <h1 className="text-black font-semibold">{firstName}</h1>
       </div>
 
