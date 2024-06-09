@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Landing Page/LandingPage.jsx"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { baseApiUrl } from "./allApi";
 import NavBar from "./components/navBar/NavBar/NavBar.jsx";
 import Login from "./pages/LoginPage/Login";
@@ -12,57 +11,55 @@ import Register from "./pages/Register/Registration.jsx"
 import MainPage from "./pages/Main page/MainPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/Landing Page/LandingPage.jsx";
-import {messaging} from "./FireBase.js"
-import {getToken} from "firebase/messaging"
-
+import { messaging } from "./FireBase.js";
+import { getToken } from "firebase/messaging";
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(context);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
+  const requestPermission = async () => {
+    const permission = await Notification.requestPermission();
 
-
-  const requestPermission = async()=>{
-    const permission = await Notification.requestPermission()
-
-    if(permission === 'granted'){
+    if (permission === 'granted') {
       // Generate Token
-    const token = await getToken(messaging , {vapidKey:'BJG_q_-rmY_2VsTuu73y-tF5N-9P1Rl0BADG1ney8HMrmHBUDc47wbOk47gjv6aoBOJpfn0H13KbR0m19ptAdHo'})
-    console.log(token)
-    }else if(permission === 'denied'){
-      alert("You denied for the notification")
+      const token = await getToken(messaging, {
+        vapidKey: 'BJG_q_-rmY_2VsTuu73y-tF5N-9P1Rl0BADG1ney8HMrmHBUDc47wbOk47gjv6aoBOJpfn0H13KbR0m19ptAdHo'
+      });
+      console.log(token);
+    } else if (permission === 'denied') {
+      alert("You denied the notification");
     }
   }
-  
+
   useEffect(() => {
-    
     const fetchUser = async () => {
-      
       try {
         const response = await axios.get(baseApiUrl + "api/user/details", {
           withCredentials: true,
         });
         setIsAuthenticated(true);
-   
         setUser(response.data.user);
       } catch (error) {
-
         if (error.response && error.response.data) {
           setIsAuthenticated(false);
           setUser({});
-        } 
-      
+        }
+      } finally {
+        setIsCheckingAuth(false); // Authentication check is done
       }
     };
 
-    // Req user for notification permission
+    // Request user for notification permission
     requestPermission();
 
-   
-
     fetchUser();
-  }, [isAuthenticated]);
-  
+  }, [setIsAuthenticated, setUser]);
 
+  if (isCheckingAuth) {
+    // Show loading indicator while checking authentication
+    return "/";
+  }
 
   return (
     <>
@@ -74,11 +71,12 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/mainPage" element={<MainPage />} />
           <Route path="/LandingPage" element={<LandingPage />} />
-          <Route path="*" element={<MainPage/>} />
+
+          {/* Redirect based on authentication status once check is complete */}
+          <Route path="*" element={isAuthenticated ? <MainPage /> : <Navigate to="/" />} />
         </Routes>
-        <Footer/>
-          
-        <ToastContainer position="top-center" autoClose={3000} />
+        <Footer />
+        <ToastContainer position="top-center" autoClose={2000} />
       </Router>
     </>
   );
