@@ -7,6 +7,7 @@ import Features from "../../components/navBar/LandingComponent/Features/Features
 
 const LandingPage = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(context);
+  
 
   const navigateTo = useNavigate();
 

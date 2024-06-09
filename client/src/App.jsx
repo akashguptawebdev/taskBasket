@@ -46,13 +46,12 @@ const App = () => {
         });
         setIsAuthenticated(true);
         setUser(response.data.user);
+        setIsCheckingAuth(false);
       } catch (error) {
         if (error.response && error.response.data) {
           setIsAuthenticated(false);
           setUser({});
         }
-      } finally {
-        setIsCheckingAuth(false); // Authentication check is done
       }
     };
 
@@ -68,8 +67,11 @@ const App = () => {
       <div className="flex  justify-center items-center w-full h-screen">
         <div className=""><i class="fa-solid fa-spinner text-4xl "></i></div>
       </div>
+      
     );
   }
+
+  console.log(isAuthenticated)
 
   return (
     <>
@@ -84,8 +86,7 @@ const App = () => {
 
           {/* Redirect based on authentication status once check is complete */}
           <Route
-            path="*"
-            element={isAuthenticated ? <MainPage /> : <Navigate to="/" />}
+            path="*" element={isAuthenticated ? <MainPage /> : <Navigate to="/" />}
           />
         </Routes>
         <Footer />
