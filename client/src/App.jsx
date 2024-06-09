@@ -73,7 +73,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/mainPage" element={<MainPage />} />
           <Route path="/LandingPage" element={<LandingPage />} />
-
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer/>
           
