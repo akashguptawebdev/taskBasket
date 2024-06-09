@@ -7,6 +7,9 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRoutes from "./route/userRoute.js";
 import TaskRoutes from "./route/TaskRoute.js";
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 config({
     path:"./config/.env"
