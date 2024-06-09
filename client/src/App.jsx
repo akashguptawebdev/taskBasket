@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { baseApiUrl } from "./allApi";
 import NavBar from "./components/navBar/NavBar/NavBar.jsx";
 import Login from "./pages/LoginPage/Login";
 import { context } from "./main";
 import axios from "axios";
-import Register from "./pages/Register/Registration.jsx"
+import Register from "./pages/Register/Registration.jsx";
 import MainPage from "./pages/Main page/MainPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/Landing Page/LandingPage.jsx";
@@ -21,16 +26,17 @@ const App = () => {
   const requestPermission = async () => {
     const permission = await Notification.requestPermission();
 
-    if (permission === 'granted') {
+    if (permission === "granted") {
       // Generate Token
       const token = await getToken(messaging, {
-        vapidKey: 'BJG_q_-rmY_2VsTuu73y-tF5N-9P1Rl0BADG1ney8HMrmHBUDc47wbOk47gjv6aoBOJpfn0H13KbR0m19ptAdHo'
+        vapidKey:
+          "BJG_q_-rmY_2VsTuu73y-tF5N-9P1Rl0BADG1ney8HMrmHBUDc47wbOk47gjv6aoBOJpfn0H13KbR0m19ptAdHo",
       });
       console.log(token);
-    } else if (permission === 'denied') {
+    } else if (permission === "denied") {
       alert("You denied the notification");
     }
-  }
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -58,7 +64,11 @@ const App = () => {
 
   if (isCheckingAuth) {
     // Show loading indicator while checking authentication
-    return "/";
+    return (
+      <div className="flex  justify-center items-center w-full h-screen">
+        <div className=""><i class="fa-solid fa-spinner text-4xl "></i></div>
+      </div>
+    );
   }
 
   return (
@@ -73,7 +83,10 @@ const App = () => {
           <Route path="/LandingPage" element={<LandingPage />} />
 
           {/* Redirect based on authentication status once check is complete */}
-          <Route path="*" element={isAuthenticated ? <MainPage /> : <Navigate to="/" />} />
+          <Route
+            path="*"
+            element={isAuthenticated ? <MainPage /> : <Navigate to="/" />}
+          />
         </Routes>
         <Footer />
         <ToastContainer position="top-center" autoClose={2000} />
