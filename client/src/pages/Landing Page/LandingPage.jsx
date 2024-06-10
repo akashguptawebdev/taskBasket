@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Landing.css";
 import {context} from "../../main"
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ import Features from "../../components/navBar/LandingComponent/Features/Features
 const LandingPage = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(context);
   
+  
+
 
   const navigateTo = useNavigate();
 
@@ -18,6 +20,8 @@ const LandingPage = () => {
     <div className="main-Container px-5 md:px-20 mt-5 ">
       <Header/>
       <Features />
+
+
     </div>
   );
 };

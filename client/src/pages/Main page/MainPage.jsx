@@ -5,6 +5,7 @@ import axios from "axios";
 import { context } from "../../main";
 import { useNavigate } from "react-router-dom";
 
+
 const MainPage = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(context);
   const navigateTo = useNavigate();
@@ -29,8 +30,11 @@ const MainPage = () => {
     <div className="h-screen px-5 md:px-20 mt-20">
       {isCheckingAuth ? (
         <p>Loading...</p> // Optionally show a loading indicator during the delay
-      ) : (
-        <ShowTask />
+      ) : (<>
+
+      <ShowTask />
+   
+      </>
       )}
     </div>
   );

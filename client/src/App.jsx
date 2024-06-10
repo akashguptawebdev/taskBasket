@@ -16,33 +16,31 @@ import Register from "./pages/Register/Registration.jsx";
 import MainPage from "./pages/Main page/MainPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/Landing Page/LandingPage.jsx";
-import { messaging } from "./FireBase.js";
-import { getToken } from "firebase/messaging";
+
+
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(context);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
-  const requestPermission = async () => {
-    const permission = await Notification.requestPermission();
-
-    if (permission === "granted") {
-      // Generate Token
-      const token = await getToken(messaging, {
-        vapidKey:
-          "BJG_q_-rmY_2VsTuu73y-tF5N-9P1Rl0BADG1ney8HMrmHBUDc47wbOk47gjv6aoBOJpfn0H13KbR0m19ptAdHo",
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      }).catch((error) => {
+        console.error('Service Worker registration failed:', error);
       });
-      console.log(token);
-    } else if (permission === "denied") {
-      alert("You denied the notification");
-    }
-  };
+  }
+  
+  
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(baseApiUrl + "api/user/details", {
           withCredentials: true,
+        }).then(()=>{
+          setIsCheckingAuth(false);
         });
         setIsAuthenticated(true);
         setUser(response.data.user);
@@ -51,13 +49,15 @@ const App = () => {
           setIsAuthenticated(false);
           setUser({});
         }
-      } finally {
-         setIsCheckingAuth(false); // Authentication check is done
+
+        // IF not fetch then explicity set to false
+        setTimeout(()=>{
+          setIsCheckingAuth(false);
+
+        },1000)
       }
     };
 
-    // Request user for notification permission
-    requestPermission();
 
     fetchUser();
   }, [setIsAuthenticated, setUser]);
@@ -71,6 +71,8 @@ const App = () => {
       
     );
   }
+
+
 
 
   return (
@@ -91,6 +93,7 @@ const App = () => {
         </Routes>
         <Footer />
         <ToastContainer position="top-center" autoClose={2000} />
+      
       </Router>
     </>
   );
