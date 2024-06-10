@@ -24,7 +24,7 @@ const MainPage = () => {
     if (!isCheckingAuth && !isAuthenticated) {
       navigateTo("/login");
     }
-  }, [isCheckingAuth, isAuthenticated, navigateTo]);
+  }, [isCheckingAuth]);
 
   return (
     <div className="h-screen px-5 md:px-20 mt-20">

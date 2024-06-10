@@ -18,7 +18,6 @@ import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/Landing Page/LandingPage.jsx";
 
 
-
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(context);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
@@ -39,9 +38,7 @@ const App = () => {
       try {
         const response = await axios.get(baseApiUrl + "api/user/details", {
           withCredentials: true,
-        }).then(()=>{
-          setIsCheckingAuth(false);
-        });
+        })
         setIsAuthenticated(true);
         setUser(response.data.user);
       } catch (error) {
@@ -49,12 +46,9 @@ const App = () => {
           setIsAuthenticated(false);
           setUser({});
         }
-
-        // IF not fetch then explicity set to false
-        setTimeout(()=>{
-          setIsCheckingAuth(false);
-
-        },1000)
+      } finally {
+          // Authentication check is done
+          setIsCheckingAuth(false)
       }
     };
 
@@ -68,7 +62,6 @@ const App = () => {
       <div className="flex  justify-center items-center w-full h-screen">
         <div className=""><i class="fa-solid fa-spinner text-4xl "></i></div>
       </div>
-      
     );
   }
 
@@ -88,12 +81,11 @@ const App = () => {
 
           {/* Redirect based on authentication status once check is complete */}
           <Route
-            path="*" element={isAuthenticated ? <MainPage /> : <Navigate to="/" />}
+            path="*" element={ <MainPage />}
           />
         </Routes>
         <Footer />
         <ToastContainer position="top-center" autoClose={2000} />
-      
       </Router>
     </>
   );
