@@ -3,7 +3,7 @@ import "./Header.css"
 import {mainPic} from "../../../../assets/assetsprovider"
 const Header = () => {
   return (
-    <div>
+    <div className=''>
       <div className="header-top hero md:flex gap-12 relative">
 
         <div className="left banner">

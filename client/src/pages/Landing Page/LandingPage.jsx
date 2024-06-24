@@ -22,13 +22,15 @@ const LandingPage = () => {
 
   return (
     <>
-    <div className="w-full h-screen">
+    <div className="">
     {checkIsAuthe ? (
         <div>Loading...</div>
       ) : (
         <div className="main-Container px-5 md:px-20 mt-5 ">
           <Header />
+          <div>
           <Features />
+          </div>
         </div>
       )}
 

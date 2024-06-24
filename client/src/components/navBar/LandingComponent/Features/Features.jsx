@@ -12,7 +12,7 @@ const Features = () => {
           d="M0,64L60,96C120,128,240,192,360,197.3C480,203,600,149,720,144C840,139,960,181,1080,176C1200,171,1320,117,1380,90.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
         ></path>
       </svg>
-      <div className="Features-container text-white gap-20 lg:gap-8 lg:px-48 px-5 h-screen">
+      <div className="Features-container text-white gap-20 lg:gap-8 lg:px-48 px-5 h-screen ">
         <section className="flex flex-2 justify-evenly items-center ">
         <div className="justify-center items-center hidden md:block  w-full">
           <img src={mainPic.relexPerson} alt="" className="rounded-md object-cover w-96" />

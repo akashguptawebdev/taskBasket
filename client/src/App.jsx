@@ -56,14 +56,14 @@ const App = () => {
     fetchUser();
   }, [setIsAuthenticated, setUser]);
 
-  if (isCheckingAuth) {
-    // Show loading indicator while checking authentication
-    return (
-      <div className="flex  justify-center items-center w-full h-screen">
-        <div className=""><i class="fa-solid fa-spinner text-4xl "></i></div>
-      </div>
-    );
-  }
+  // if (isCheckingAuth) {
+  //   // Show loading indicator while checking authentication
+  //   return (
+  //     <div className="flex  justify-center items-center w-full h-screen">
+  //       <div className=""><i class="fa-solid fa-spinner text-4xl "></i></div>
+  //     </div>
+  //   );
+  // }
 
 
 
@@ -84,8 +84,9 @@ const App = () => {
             path="*" element={ <MainPage />}
           />
         </Routes>
-        <Footer />
+
         <ToastContainer position="top-center" autoClose={2000} />
+        <Footer />
       </Router>
     </>
   );
